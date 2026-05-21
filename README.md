@@ -1,16 +1,36 @@
-# React + Vite
+# Why do Xi Jinping and Vladimir Putin meet so often?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive geopolitical intelligence dashboard tracking the 47 meetings between Xi Jinping and Vladimir Putin since 2013, along with 17 major bilateral commitments and objectives across economic integration and defence cooperation.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frequency Analysis** — Bar chart showing meeting cadence, pre-pandemic vs "No Limits" era averages, bilateral vs sideline split
+- **Interactive Timeline** — Hover for themes discussed, click for full meeting details in a slide-over drawer
+- **World Map** — Geographic visualization of meeting locations with proportionally-sized dots
+- **Theme Tracker** — Most recurrent strategic themes across all 47 summits
+- **Commitments Tracker** — 17 economic and defence commitments with achievement status and empirical evidence
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- Recharts for data visualization
+- Lucide React for icons
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+## Deployment
+
+```bash
+npm run build
+npx gh-pages -d dist
+```
+
+## Data Sources
+
+Official communiqués, Xinhua, TASS, and institutional records. Last updated May 2026.
