@@ -121,20 +121,20 @@ const themeColors = {
 
 // City positions mapped onto the world map image (percentage-based for responsiveness)
 // Image is approx equirectangular projection
-// x=(lon+167)/360*100 calibrated to map origin ~167°W; y=(90-lat)/180*100
+// Pixel-exact positions snapped to land on the 1167x609 equirectangular map
 const cityPositions = {
-  "Moscow":{x:56.8,y:19.0},"St. Petersburg":{x:54.8,y:16.7},"Sochi":{x:57.4,y:25.8},
-  "Vladivostok":{x:83.0,y:26.1},"Ufa":{x:62.0,y:19.6},"Kazan":{x:60.0,y:19.0},
-  "Beijing":{x:78.7,y:27.8},"Shanghai":{x:80.1,y:32.7},"Hangzhou":{x:79.8,y:33.2},
-  "Xiamen":{x:79.2,y:36.4},"Qingdao":{x:79.8,y:29.9},
-  "Durban":{x:55.0,y:66.6},"Johannesburg":{x:54.2,y:64.6},
-  "Bishkek":{x:67.1,y:26.2},"Dushanbe":{x:65.5,y:28.6},"Tashkent":{x:65.6,y:26.5},
-  "Samarkand":{x:65.0,y:27.9},"Astana":{x:66.3,y:21.6},
-  "Bali":{x:78.4,y:54.8},"Da Nang":{x:76.4,y:41.1},
-  "Osaka":{x:84.0,y:30.7},"Goa":{x:66.9,y:41.4},
-  "Fortaleza":{x:35.7,y:51.9},"Brasilia":{x:33.1,y:58.8},"Buenos Aires":{x:30.2,y:69.2},"Lima":{x:25.0,y:56.7},
-  "Brisbane":{x:88.9,y:65.3},"Antalya":{x:54.9,y:29.5},"Paris":{x:47.0,y:22.8},
-  "Hamburg":{x:49.2,y:20.2}
+  "Moscow":{x:60.4,y:18.9},"St. Petersburg":{x:58.4,y:16.6},"Sochi":{x:61.0,y:25.6},
+  "Vladivostok":{x:86.6,y:25.9},"Ufa":{x:65.5,y:19.5},"Kazan":{x:63.6,y:18.9},
+  "Beijing":{x:82.3,y:27.8},"Shanghai":{x:83.9,y:32.5},"Hangzhou":{x:83.9,y:32.5},
+  "Xiamen":{x:82.3,y:36.0},"Qingdao":{x:83.5,y:29.9},
+  "Durban":{x:58.2,y:66.0},"Johannesburg":{x:57.8,y:64.5},
+  "Bishkek":{x:70.7,y:26.1},"Dushanbe":{x:69.1,y:28.4},"Tashkent":{x:69.2,y:26.9},
+  "Samarkand":{x:68.6,y:27.9},"Astana":{x:69.8,y:21.5},
+  "Bali":{x:82.3,y:54.8},"Da Nang":{x:79.6,y:40.6},
+  "Osaka":{x:87.6,y:30.7},"Goa":{x:70.4,y:41.4},
+  "Fortaleza":{x:39.2,y:52.2},"Brasilia":{x:36.7,y:58.6},"Buenos Aires":{x:33.8,y:69.1},"Lima":{x:29.4,y:56.3},
+  "Brisbane":{x:91.0,y:65.2},"Antalya":{x:58.5,y:29.4},"Paris":{x:50.4,y:23.6},
+  "Hamburg":{x:52.7,y:20.0}
 };
 
 const cityGeo = (() => {
