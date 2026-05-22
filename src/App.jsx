@@ -121,20 +121,20 @@ const themeColors = {
 
 // City positions mapped onto the world map image (percentage-based for responsiveness)
 // Image is approx equirectangular projection
-// Equirectangular: x=(lon+180)/360*100, y=(90-lat)/180*100
+// x=(lon+167)/360*100 calibrated to map origin ~167°W; y=(90-lat)/180*100
 const cityPositions = {
-  "Moscow":{x:60.4,y:19.0},"St. Petersburg":{x:58.4,y:16.7},"Sochi":{x:61.0,y:25.8},
-  "Vladivostok":{x:86.6,y:26.1},"Ufa":{x:65.5,y:19.6},"Kazan":{x:63.6,y:19.0},
-  "Beijing":{x:82.3,y:27.8},"Shanghai":{x:83.8,y:32.7},"Hangzhou":{x:83.4,y:33.2},
-  "Xiamen":{x:82.8,y:36.4},"Qingdao":{x:83.4,y:29.9},
-  "Durban":{x:58.6,y:66.6},"Johannesburg":{x:57.8,y:64.6},
-  "Bishkek":{x:70.7,y:26.2},"Dushanbe":{x:69.1,y:28.6},"Tashkent":{x:69.3,y:26.5},
-  "Samarkand":{x:68.6,y:27.9},"Astana":{x:70.4,y:21.6},
-  "Bali":{x:82.0,y:54.8},"Da Nang":{x:80.1,y:41.1},
-  "Osaka":{x:87.6,y:30.7},"Goa":{x:70.5,y:41.4},
-  "Fortaleza":{x:39.3,y:51.9},"Brasilia":{x:36.7,y:58.8},"Buenos Aires":{x:33.8,y:69.2},"Lima":{x:28.6,y:56.7},
-  "Brisbane":{x:92.5,y:65.3},"Antalya":{x:58.5,y:29.5},"Paris":{x:50.6,y:22.8},
-  "Hamburg":{x:52.8,y:20.2}
+  "Moscow":{x:56.8,y:19.0},"St. Petersburg":{x:54.8,y:16.7},"Sochi":{x:57.4,y:25.8},
+  "Vladivostok":{x:83.0,y:26.1},"Ufa":{x:62.0,y:19.6},"Kazan":{x:60.0,y:19.0},
+  "Beijing":{x:78.7,y:27.8},"Shanghai":{x:80.1,y:32.7},"Hangzhou":{x:79.8,y:33.2},
+  "Xiamen":{x:79.2,y:36.4},"Qingdao":{x:79.8,y:29.9},
+  "Durban":{x:55.0,y:66.6},"Johannesburg":{x:54.2,y:64.6},
+  "Bishkek":{x:67.1,y:26.2},"Dushanbe":{x:65.5,y:28.6},"Tashkent":{x:65.6,y:26.5},
+  "Samarkand":{x:65.0,y:27.9},"Astana":{x:66.3,y:21.6},
+  "Bali":{x:78.4,y:54.8},"Da Nang":{x:76.4,y:41.1},
+  "Osaka":{x:84.0,y:30.7},"Goa":{x:66.9,y:41.4},
+  "Fortaleza":{x:35.7,y:51.9},"Brasilia":{x:33.1,y:58.8},"Buenos Aires":{x:30.2,y:69.2},"Lima":{x:25.0,y:56.7},
+  "Brisbane":{x:88.9,y:65.3},"Antalya":{x:54.9,y:29.5},"Paris":{x:47.0,y:22.8},
+  "Hamburg":{x:49.2,y:20.2}
 };
 
 const cityGeo = (() => {
@@ -198,8 +198,8 @@ export default function App() {
       {/* HEADER */}
       <header style={{ borderBottom:"1px solid #E5E4DF" }} className="bg-white/70 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-[40px] font-bold tracking-tight text-center" style={{ color:"#1a1a1a" }}>How often do Xi Jinping and Vladimir Putin meet?</h1>
+          <div className="flex-1 text-center">
+            <h1 className="text-[40px] font-bold tracking-tight" style={{ color:"#1a1a1a", textAlign:"center" }}>How often do Xi Jinping and Vladimir Putin meet?</h1>
             <p className="text-[11px] mt-0.5 tracking-wide" style={{ fontFamily:"'DM Sans',sans-serif", color:"#999" }}>47 meetings · 17 bilateral commitments · 13 years of deepening strategic convergence</p>
           </div>
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ borderColor:"#E0DFDA", background:"#F2F1EC" }}>
