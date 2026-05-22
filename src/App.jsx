@@ -121,19 +121,20 @@ const themeColors = {
 
 // City positions mapped onto the world map image (percentage-based for responsiveness)
 // Image is approx equirectangular projection
+// Equirectangular: x=(lon+180)/360*100, y=(90-lat)/180*100
 const cityPositions = {
-  "Moscow":{x:56.8,y:27},"St. Petersburg":{x:55,y:23},"Sochi":{x:57,y:32},
-  "Vladivostok":{x:84.5,y:32},"Ufa":{x:60,y:27},"Kazan":{x:58.5,y:26},
-  "Beijing":{x:78,y:36},"Shanghai":{x:80,y:40},"Hangzhou":{x:80,y:41},
-  "Xiamen":{x:79,y:44},"Qingdao":{x:80,y:38},
-  "Durban":{x:55,y:73},"Johannesburg":{x:54,y:69},
-  "Bishkek":{x:64,y:33},"Dushanbe":{x:63,y:35},"Tashkent":{x:62.5,y:33},
-  "Samarkand":{x:62,y:34},"Astana":{x:62,y:28},
-  "Bali":{x:78.5,y:61},"Da Nang":{x:76,y:47},
-  "Osaka":{x:85,y:37},"Goa":{x:65,y:49},
-  "Fortaleza":{x:30,y:65},"Brasilia":{x:28.5,y:68},"Buenos Aires":{x:25.5,y:77},"Lima":{x:20,y:63},
-  "Brisbane":{x:89,y:69},"Antalya":{x:55,y:35},"Paris":{x:47.5,y:28},
-  "Hamburg":{x:49,y:25}
+  "Moscow":{x:60.4,y:19.0},"St. Petersburg":{x:58.4,y:16.7},"Sochi":{x:61.0,y:25.8},
+  "Vladivostok":{x:86.6,y:26.1},"Ufa":{x:65.5,y:19.6},"Kazan":{x:63.6,y:19.0},
+  "Beijing":{x:82.3,y:27.8},"Shanghai":{x:83.8,y:32.7},"Hangzhou":{x:83.4,y:33.2},
+  "Xiamen":{x:82.8,y:36.4},"Qingdao":{x:83.4,y:29.9},
+  "Durban":{x:58.6,y:66.6},"Johannesburg":{x:57.8,y:64.6},
+  "Bishkek":{x:70.7,y:26.2},"Dushanbe":{x:69.1,y:28.6},"Tashkent":{x:69.3,y:26.5},
+  "Samarkand":{x:68.6,y:27.9},"Astana":{x:70.4,y:21.6},
+  "Bali":{x:82.0,y:54.8},"Da Nang":{x:80.1,y:41.1},
+  "Osaka":{x:87.6,y:30.7},"Goa":{x:70.5,y:41.4},
+  "Fortaleza":{x:39.3,y:51.9},"Brasilia":{x:36.7,y:58.8},"Buenos Aires":{x:33.8,y:69.2},"Lima":{x:28.6,y:56.7},
+  "Brisbane":{x:92.5,y:65.3},"Antalya":{x:58.5,y:29.5},"Paris":{x:50.6,y:22.8},
+  "Hamburg":{x:52.8,y:20.2}
 };
 
 const cityGeo = (() => {
@@ -182,6 +183,7 @@ export default function App() {
   const years = Array.from({ length: 14 }, (_, i) => 2013 + i);
   const tlPadX = 55, tlWidth = 1160;
   const yearWidth = (tlWidth - tlPadX * 2) / (years.length - 1);
+  const tlBaseline = 350; // enlarged timeline
 
   // For commitments grid: rows of 3, last row centered if 2 remain
   const commitRows = [];
@@ -197,7 +199,7 @@ export default function App() {
       <header style={{ borderBottom:"1px solid #E5E4DF" }} className="bg-white/70 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between">
           <div>
-            <h1 className="text-[20px] font-bold tracking-tight" style={{ color:"#1a1a1a" }}>Why do Xi Jinping and Vladimir Putin meet so often?</h1>
+            <h1 className="text-[40px] font-bold tracking-tight text-center" style={{ color:"#1a1a1a" }}>How often do Xi Jinping and Vladimir Putin meet?</h1>
             <p className="text-[11px] mt-0.5 tracking-wide" style={{ fontFamily:"'DM Sans',sans-serif", color:"#999" }}>47 meetings · 17 bilateral commitments · 13 years of deepening strategic convergence</p>
           </div>
           <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border" style={{ borderColor:"#E0DFDA", background:"#F2F1EC" }}>
@@ -210,7 +212,7 @@ export default function App() {
       <main>
         {/* ═══ SECTION 1: FREQUENCY ═══ */}
         <section className="pt-10 pb-4 max-w-[1200px] mx-auto px-6">
-          <h2 className="text-[30px] font-bold leading-snug mb-1" style={{ color:"#000" }}>
+          <h2 className="text-[60px] font-bold leading-snug mb-1 text-center" style={{ color:"#000" }}>
             Frequency of the Meetings
           </h2>
           <p className="text-[13.5px] mt-2 max-w-[740px] leading-[1.75]" style={{ color:"#666" }}>
@@ -257,18 +259,14 @@ export default function App() {
 
         {/* ═══ SECTION 2: TIMELINE ═══ */}
         <section className="py-8 max-w-[1200px] mx-auto px-6">
-          <h2 className="text-[26px] font-bold leading-snug mb-1" style={{ color:"#000" }}>Timeline of the Meetings</h2>
+          <h2 className="text-[52px] font-bold leading-snug mb-1 text-center" style={{ color:"#000" }}>Timeline of the Meetings</h2>
           <p className="text-[12.5px] mt-1 mb-5" style={{ color:"#888", fontFamily:"'DM Sans',sans-serif" }}>
             Each dot represents a summit. <strong style={{ color:"#555" }}>Hover</strong> for themes discussed. <strong style={{ color:"#555" }}>Click</strong> for full details.
-            <span className="ml-3 text-[10px] px-2 py-0.5 rounded-full border inline-flex items-center gap-2" style={{ borderColor:"#ddd", color:"#999" }}>
-              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full" style={{ background:"#6d3bbd" }}/> Bilateral</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full" style={{ background:"#aaa" }}/> Sideline</span>
-            </span>
           </p>
 
           <div className="bg-white rounded-2xl border overflow-x-auto" style={{ borderColor:"#E5E4DF" }}>
             <div style={{ minWidth:"1160px", position:"relative" }} className="px-5 pt-5 pb-4">
-              <svg width="100%" height="220" viewBox={`0 0 ${tlWidth} 220`} style={{ overflow:"visible" }}>
+              <svg width="100%" height="400" viewBox={`0 0 ${tlWidth} 400`} style={{ overflow:"visible" }}>
                 {years.map((yr,i) => {
                   const x = tlPadX + i * yearWidth;
                   const col = yearBarColors[yr];
@@ -276,14 +274,14 @@ export default function App() {
                   const ym = meetingsData.filter(m=>m.year===yr);
                   return (
                     <g key={yr}>
-                      {i < years.length-1 && <line x1={x} y1={185} x2={x+yearWidth} y2={185} stroke={isGap?"#D8D7D2":col} strokeWidth={isGap?1:2.5} strokeDasharray={isGap?"4 4":"none"} opacity={isGap?0.5:0.45}/>}
-                      <line x1={x} y1={180} x2={x} y2={190} stroke={isGap?"#D8D7D2":col} strokeWidth={1.5} opacity={isGap?0.4:0.5}/>
-                      <text x={x} y={208} textAnchor="middle" fontSize={11} fontWeight={600} fontFamily="'DM Sans',sans-serif" fill={isGap?"#ccc":col} opacity={isGap?0.5:0.75}>{yr}</text>
+                      {i < years.length-1 && <line x1={x} y1={tlBaseline} x2={x+yearWidth} y2={tlBaseline} stroke={isGap?"#D8D7D2":col} strokeWidth={isGap?1:2.5} strokeDasharray={isGap?"4 4":"none"} opacity={isGap?0.5:0.45}/>}
+                      <line x1={x} y1={tlBaseline-5} x2={x} y2={tlBaseline+5} stroke={isGap?"#D8D7D2":col} strokeWidth={1.5} opacity={isGap?0.4:0.5}/>
+                      <text x={x} y={tlBaseline+23} textAnchor="middle" fontSize={11} fontWeight={600} fontFamily="'DM Sans',sans-serif" fill={isGap?"#ccc":col} opacity={isGap?0.5:0.75}>{yr}</text>
                       {ym.map((m,idx) => {
                         const frac = ym.length>1 ? idx/(ym.length-1) : 0.5;
                         const dotX = x + (i<years.length-1 ? frac*yearWidth*0.7+yearWidth*0.15 : 0);
-                        const jitter = (idx%2===0?-1:1)*(18+idx*6);
-                        const dotY = 90+jitter;
+                        const jitter = (idx%2===0?-1:1)*(30+idx*10);
+                        const dotY = 160+jitter;
                         const isH = hoveredMeeting?.id===m.id;
                         const isB = m.type==="Bilateral";
                         const dc = yearBarColors[m.year];
@@ -291,7 +289,7 @@ export default function App() {
                           <g key={m.id} transform={`translate(${dotX},${dotY})`} style={{cursor:"pointer"}}
                             onMouseEnter={()=>setHoveredMeeting(m)} onMouseLeave={()=>setHoveredMeeting(null)}
                             onClick={()=>setSelectedMeeting(m)}>
-                            <line x1={0} y1={0} x2={0} y2={185-dotY} stroke={dc} strokeWidth={isH?1.2:0.6} opacity={isH?0.5:0.15} strokeDasharray={isH?"none":"2 2"}/>
+                            <line x1={0} y1={0} x2={0} y2={tlBaseline-dotY} stroke={dc} strokeWidth={isH?1.2:0.6} opacity={isH?0.5:0.15} strokeDasharray={isH?"none":"2 2"}/>
                             {!isH && <text x={0} y={-13} textAnchor="middle" fontSize={8} fontFamily="'DM Sans',sans-serif" fill="#999">{m.place}</text>}
                             {isB && <circle r={isH?11:9} fill={dc} opacity={0.08}/>}
                             <circle r={isH?7:(isB?5.5:3.5)} fill={dc} stroke={isH?dc:"white"} strokeWidth={isH?2.5:1.5} opacity={isH?1:0.8} style={{transition:"all 0.15s ease"}}/>
@@ -332,7 +330,7 @@ export default function App() {
         {/* ═══ SECTION 3: WHO PLAYED HOST — FULL WIDTH MAP ═══ */}
         <section className="py-8">
           <div className="max-w-[1200px] mx-auto px-6">
-            <h2 className="text-[26px] font-bold leading-snug mb-1" style={{ color:"#000" }}>Who Played Host?</h2>
+            <h2 className="text-[52px] font-bold leading-snug mb-1 text-center" style={{ color:"#000" }}>Who Played Host?</h2>
             <div className="flex gap-6 mb-4 mt-2">
               {[
                 {label:"China",count:hostStats.china,color:"#c42020"},
@@ -420,7 +418,7 @@ export default function App() {
 
         {/* ═══ SECTION 4: THEMES ═══ */}
         <section className="py-6 max-w-[1200px] mx-auto px-6">
-          <h2 className="text-[26px] font-bold leading-snug mb-4" style={{ color:"#000" }}>Most Recurrent Themes of the Meetings</h2>
+          <h2 className="text-[52px] font-bold leading-snug mb-4 text-center" style={{ color:"#000" }}>Most Recurrent Themes of the Meetings</h2>
           <div className="bg-white rounded-2xl border p-6" style={{ borderColor:"#E5E4DF" }}>
             <div className="grid grid-cols-2 gap-x-10 gap-y-4">
               {themeFreq.map((t,i)=>{
@@ -453,7 +451,7 @@ export default function App() {
 
         {/* ═══ SECTION 5: COMMITMENTS ═══ */}
         <section className="py-8 pb-16 max-w-[1200px] mx-auto px-6">
-          <h2 className="text-[28px] font-bold leading-snug mb-1" style={{ color:"#000" }}>
+          <h2 className="text-[56px] font-bold leading-snug mb-1 text-center" style={{ color:"#000" }}>
             Commitments, Objectives and Deliverables
           </h2>
           <p className="text-[13px] mt-2 max-w-[720px] leading-[1.7]" style={{ color:"#777", fontFamily:"'DM Sans',sans-serif" }}>
