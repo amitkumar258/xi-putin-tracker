@@ -471,7 +471,7 @@ export default function App() {
           {/* Grid: 3 per row, last row centered */}
           <div className="space-y-4">
             {commitRows.map((row, ri) => (
-              <div key={ri} className={`grid gap-4 ${row.length<3?"flex justify-center":"grid-cols-1 md:grid-cols-3"}`}>
+              <div key={ri} className={row.length < 3 ? "flex justify-center gap-4" : "grid grid-cols-3 gap-4"}>
                 {row.map(c => {
                   const isExp=expandedCommitment===c.id;
                   const isAchieved = c.status === "Achieved";
@@ -480,7 +480,7 @@ export default function App() {
                   const domCol = c.domain === "Economic" ? "#1e6cb6" : "#c42020";
                   return (
                     <div key={c.id}
-                      className={`rounded-xl border overflow-hidden flex flex-col transition-all ${row.length<3?"w-full md:w-[calc(33.333%-0.667rem)]":""}`}
+                      className={`rounded-xl border overflow-hidden flex flex-col transition-all ${row.length<3?"w-1/3":""}`}
                       style={{ background:bgColor, borderColor:isExp?`${domCol}50`:borderCol }}>
                       <div className="p-4 flex-1">
                         <div className="flex items-center gap-2 mb-2.5">
